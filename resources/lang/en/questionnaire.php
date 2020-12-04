@@ -1,0 +1,38 @@
+<?php
+
+return [
+    'Create New Question' => 'Create New Question',
+
+    'Give choices that give you the most insight into your question' => 'Give choices that give you the most insight into your question',
+    'answer4' => 'answer4',
+    'answer3' => 'answer3',
+    'answer2' => 'answer2',
+    'answer1' => 'answer1',
+    'answer1' => 'answer1',
+    'answer1' => 'answer1',
+    'Create Questionnaire' => 'Create Questionnaire',
+    'thanx' => 'THANK YOU',
+    'Add New Question' => 'Add New Question',
+    'Task Survey' => 'Task Survey',
+    'Enter Question' => 'Enter Question',
+    'Enter choice' => 'Enter choice',
+    'Choices' => 'Choices',
+    'the description 1' => 'Ask simple and to the point question for best result',
+    'question' => 'question',
+    'Complete Survey' => 'Complete Survey',
+    'Your Email Please' => 'Your Email Please',
+    'Hello Whats Your Name' => 'Hello Whats Your Name',
+    'Add Question' => 'Add Question',
+    'Create New Questionnaire' => 'Create New Questionnaire',
+    'Give your questionnaire a purpose that attracts attention' => 'Give your questionnaire a purpose that attracts attention',
+    'title' => 'title',
+    'purpose' => 'purpose',
+    'Givin a purpose will increase response' => 'Givin a purpose will increase response',
+    'Share URL' => 'Share URL',
+    'Delete Question' => 'Delete Question',
+    'My Questionnaires' => 'My Questionnaires',
+    'Your Information' => 'Your Information',
+    'Your Name' => 'Your Name',
+    'Your E-mail' => 'Your E-mail',
+
+];

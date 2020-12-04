@@ -5,56 +5,68 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1>{{ $questionnaires->title }}</h1>
-                <form action="#" method="POST">
+                <form action="{{ url('/surveys/' . $questionnaires->id . '-' . Str::slug($questionnaires->title)) }} "
+                    method="POST">
                     @csrf
                     @foreach ($questionnaires->questions as $key => $question)
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{ $key + 1 }}</strong> {{ $question->question }}
                             </div>
-
-                            <ul class="list-group">
-                                @foreach ($question->answers as $answer)
-                                    <li class="list-group-item">
-                                        <input type="radio" class="mr-2" name="#" id="{{ $answer->id }}">
-                                        {{ $answer->answer }}
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <div class="card-body">
+                                @error('responses.' . $key . '.answer_id')
+                                    <small class="text-danger"> {{ $message }} </small>
+                                @enderror
+                                <ul class="list-group">
+                                    @foreach ($question->answers as $answer)
+                                        <label for="{{ $answer->id }}">
+                                            <li class="list-group-item">
+                                                <input type="radio" class="mr-2" name="responses[{{ $key }}][answer_id]"
+                                                    id="{{ $answer->id }}" value="{{ $answer->id }}"
+                                                    {{ old('responses.' . $key . '.answer_id') == $answer->id ? 'checked' : '' }}>
+                                                {{ $answer->answer }}
+                                                <input type="hidden" name="responses[{{ $key }}][question_id]"
+                                                    value="{{ $question->id }}">
+                                            </li>
+                                        </label>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     @endforeach
-                </form>
-                <div class="card">
-                    <div class="card-header">Create New Questionnaire</div>
+                    <div class="card">
+                        <div class="card-header">@lang('questionnaire.Your Information') </div>
 
-                    <div class="card-body">
-                        <form method="POST" action="#">
-                            @csrf
+                        <div class="card-body">
+
                             <div class="form-group">
-                                <label for="title">title</label>
-                                <input name="title" type="text" class="form-control" id="title" aria-describedby="titleHelp"
-                                    placeholder="Enter Title" value="{{ old('title') }}">
-                                <small id="titleHelp" class="form-text text-muted">Give your questionnaire a purpose that
-                                    attracts attention</small>
-                                @error('title')
+                                <label for="name">@lang('questionnaire.Your Name')</label>
+                                <input name="survey[name]" type="text" class="form-control" id="name"
+                                    aria-describedby="nameHelp" placeholder="Enter name" value="{{ old('name') }}">
+                                <small id="nameHelp" class="form-text text-muted">
+                                    @lang('questionnaire.Hello Whats Your Name')</small>
+                                @error('survey.name')
                                     <small class="text-danger">{{ $message }}</small>
 
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="purpose">purpose</label>
-                                <input name="purpose" type="text" class="form-control" id="purpose"
-                                    aria-describedby="purposeHelp" placeholder="Enter Purpose" value="{{ old('purpose') }}">
-                                <small id="purposeHelp" class="form-text text-muted">Givin a purpose will increase response
-                                </small>
-                                @error('purpose')
+                                <label for="email">@lang('questionnaire.Your E-mail')</label>
+                                <input name="survey[email]" type="email" class="form-control" id="email"
+                                    aria-describedby="emailHelp" placeholder="Enter email" value="{{ old('email') }}">
+                                <small id="emailHelp" class="form-text text-muted">
+                                    @lang('questionnaire.Your Email Please')</small>
+                                @error('survey.email')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Create Questionnaire</button>
-                        </form>
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    @lang('questionnaire.Complete Survey')</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
