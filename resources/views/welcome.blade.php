@@ -90,7 +90,7 @@
                         {!! \Session::get('success') !!}
                     </div>
                 @else
-                    Welcome To Questionnaire Login To Start
+                   @lang('questionnaire.Welcome To Questionnaire Login To Start')
                 @endif
             </div>
         </div>
